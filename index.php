@@ -37,7 +37,7 @@ include 'config.php';
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
         echo "<div class='flex flex-col justify-center content-center h-screen bg-no-repeat bg-cover bg-center bg-white' style='background-image: url(uploads/" . $row['image_path'] . ")'>";
-        echo "<h1 class='z-10 text-center text-6xl md:text-7xl font-jkt font-bold text-white'>" . $row['title'] . "</h1>";
+        echo "<h1 class='z-10 text-center bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-6xl md:text-7xl font-bold text-transparent'>" . $row['title'] . "</h1>";
         echo "<h3 class='z-10 text-center text-white font-jkt font-bold'>" . $row['subtitle'] . "</h3>";
         echo "</div>";
       }
@@ -108,53 +108,53 @@ include 'config.php';
   </div>
   <div class="container mx-auto">
     <div class="bg-white mt-5 p-6 rounded-lg shadow-lg">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <?php
-              // Fungsi untuk mengambil semua hari
-              function getAllHari($conn)
-              {
-                $sql = "SELECT * FROM hari";
-                return mysqli_query($conn, $sql);
-              }
+        // Fungsi untuk mengambil semua hari
+        function getAllHari($conn)
+        {
+          $sql = "SELECT * FROM hari";
+          return mysqli_query($conn, $sql);
+        }
 
-              // Fungsi untuk mengambil jadwal berdasarkan hari
-              function getJadwalByHari($conn, $id_hari)
-              {
-                $sql = "SELECT * FROM jadwal_pelajaran 
+        // Fungsi untuk mengambil jadwal berdasarkan hari
+        function getJadwalByHari($conn, $id_hari)
+        {
+          $sql = "SELECT * FROM jadwal_pelajaran 
                         LEFT JOIN jam_mapel ON jadwal_pelajaran.id_jam = jam_mapel.id_jam
                         LEFT JOIN mapel ON jadwal_pelajaran.id_mapel = mapel.id_mapel
                         WHERE jadwal_pelajaran.id_hari = '$id_hari'";
 
-                return mysqli_query($conn, $sql);
-              }
+          return mysqli_query($conn, $sql);
+        }
 
-              // Ambil semua hari dari database
-              $hariResult = getAllHari($conn);
-              while ($hari = mysqli_fetch_assoc($hariResult)) :
-              ?>
-                <!-- Card untuk setiap hari -->
-                <div class="bg-white rounded-xl shadow-md p-6">
-                  <div class="uppercase tracking-wide text-sm text-indigo-500 font-bold">
-                    <?= $hari['nama_hari']; ?>
-                  </div>
-                  <ul class="mt-4 space-y-2">
-                    <?php
-                    // Ambil jadwal berdasarkan hari
-                    $id_hari = $hari['id_hari'];
-                    $result = getJadwalByHari($conn, $id_hari);
-
-                    // Tampilkan setiap mata pelajaran
-                    while ($data = mysqli_fetch_assoc($result)) :
-                    ?>
-                      <li class="flex justify-between items-center">
-                        <span class="text-gray-900 font-medium"><?= $data['jam_awal'] . ' - ' . $data['jam_akhir']; ?></span>
-                        <span class="text-gray-900 font-medium"><?= $data['nama_mapel']; ?></span>
-                      </li>
-                    <?php endwhile; ?>
-                  </ul>
-                </div>
-              <?php endwhile; ?>
+        // Ambil semua hari dari database
+        $hariResult = getAllHari($conn);
+        while ($hari = mysqli_fetch_assoc($hariResult)) :
+        ?>
+          <!-- Card untuk setiap hari -->
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="uppercase tracking-wide text-sm text-indigo-500 font-bold">
+              <?= $hari['nama_hari']; ?>
             </div>
+            <ul class="mt-4 space-y-2">
+              <?php
+              // Ambil jadwal berdasarkan hari
+              $id_hari = $hari['id_hari'];
+              $result = getJadwalByHari($conn, $id_hari);
+
+              // Tampilkan setiap mata pelajaran
+              while ($data = mysqli_fetch_assoc($result)) :
+              ?>
+                <li class="flex justify-between items-center">
+                  <span class="text-gray-900 font-medium"><?= $data['jam_awal'] . ' - ' . $data['jam_akhir']; ?></span>
+                  <span class="text-gray-900 font-medium"><?= $data['nama_mapel']; ?></span>
+                </li>
+              <?php endwhile; ?>
+            </ul>
+          </div>
+        <?php endwhile; ?>
+      </div>
     </div>
   </div>
 
@@ -309,29 +309,34 @@ include 'config.php';
   <div class="container mx-auto pb-5">
     <div class="bg-white mt-5 p-6 rounded-lg shadow-lg">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <?php
-            $sql = "SELECT * FROM gallery_1 ORDER BY created_at DESC";
-            $query = mysqli_query($conn, $sql);
-            while ($data = mysqli_fetch_assoc($query)):
-            ?>
-        <div
-          class="bg-black aspect-[3/4] place-self-auto md:aspect-square bg-[url('upload/<?= $data["image_path"] ?>')] bg-cover bg-center rounded-lg">
-        </div>
-          <?php endwhile; ?>
+        <?php
+        $sql = "SELECT * FROM gallery_1 ORDER BY id DESC";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo "<div class='aspect-[3/4] place-self-auto md:aspect-square bg-cover bg-center rounded-lg'>";
+            echo "<img src='uploads/" . $row['image_path'] . "' alt='' class='w-full h-full object-cover rounded-lg'>";
+            echo "</div>";
+          }
+        } else {
+          echo "";
+        }
+        ?>
         <div
           class="carousel bg-black aspect-[3/4] place-self-auto md:aspect-square bg-cover bg-center rounded-lg col-span-2 md:col-start-3 md:row-start-1 md:row-span-2 md:col-span-2">
-          <div class="carousel-item">
-            <img
-              src="./src/assets/images/all.jpeg"
-              class="w-ful rounded-lg"
-              alt="Kunjungan Industri ke Kampus ITDA" />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./src/assets/images/a1.jpeg"
-              class="w-full rounded-lg"
-              alt="Tailwind CSS Carousel component" />
-          </div>
+          <?php
+          $sql = "SELECT * FROM gallery_2 ORDER BY id DESC";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              echo "<div class='carousel-item'>";
+              echo "<img src='uploads/" . $row['image_path'] . "' alt='' class='w-ful rounded-lg'>";
+              echo "</div>";
+            }
+          } else {
+            echo "";
+          }
+          ?>
         </div>
       </div>
     </div>
@@ -389,7 +394,7 @@ include 'config.php';
 
       <div class="flex flex-col items-center sm:flex-row sm:justify-between">
         <p class="text-sm text-gray-500">
-          © Copyright 2021. All Rights Reserved.
+          © Copyright 2024. All Rights Reserved.
         </p>
 
         <div class="flex mt-3 -mx-2 sm:mt-0">

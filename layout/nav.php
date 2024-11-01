@@ -8,7 +8,7 @@
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
       if ($row) {
-        echo '<a class="btn btn-ghost text-xl text-jkt">' . $row["title"] . '</a>';
+        echo '<a class="btn btn-ghost bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-xl font-bold text-transparent">' . $row["title"] . '</a>';
       } else {
         echo "";
       }
@@ -16,10 +16,13 @@
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1 text-black">
-        <li><a href="#">Home</a></li>
         <li>
           <details>
-            <summary>Menu</summary>
+            <summary>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </summary>
             <ul class="p-2 backdrop-blur bg-white/30 rounded-t-none">
               <li><a href="#struktur">Struktur</a></li>
               <li><a href="#mapel">Mapel</a></li>
