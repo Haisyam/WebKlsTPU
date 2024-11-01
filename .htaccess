@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Aturan spesifik lebih dulu
+RewriteRule ^admin/$ admin/index.php [L]
+
+
+# Aturan umum dengan pengecualian direktori (jika diperlukan)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/includes/ [NC] 
+RewriteRule ^(.*)$ $1.php [L]

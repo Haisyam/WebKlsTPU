@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .go-top1 {
+    background-color: azure;
+    display: block;
+    position: fixed;
+  }
+}
