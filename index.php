@@ -121,9 +121,9 @@ include 'config.php';
         function getJadwalByHari($conn, $id_hari)
         {
           $sql = "SELECT * FROM jadwal_pelajaran 
-                        LEFT JOIN jam_mapel ON jadwal_pelajaran.id_jam = jam_mapel.id_jam
-                        LEFT JOIN mapel ON jadwal_pelajaran.id_mapel = mapel.id_mapel
-                        WHERE jadwal_pelajaran.id_hari = '$id_hari'";
+                  LEFT JOIN jam_mapel ON jadwal_pelajaran.id_jam = jam_mapel.id_jam
+                  LEFT JOIN mapel ON jadwal_pelajaran.id_mapel = mapel.id_mapel
+                  WHERE jadwal_pelajaran.id_hari = '$id_hari'";
 
           return mysqli_query($conn, $sql);
         }
@@ -171,126 +171,50 @@ include 'config.php';
   <div class="container mx-auto">
     <div class="bg-white mt-5 p-6 rounded-lg shadow-lg">
       <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Senin -->
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <div
-            class="uppercase tracking-wide text-sm text-indigo-500 font-bold">
-            Senin
+        <?php
+        // Fungsi untuk mengambil semua hari
+        function getAllHari2($conn)
+        {
+          $sql = "SELECT * FROM hari";
+          return mysqli_query($conn, $sql);
+        }
+
+        // Fungsi untuk mengambil jadwal berdasarkan hari
+        function getJadwalByHari2($conn, $id_hari)
+        {
+          $sql = "SELECT * FROM jadwal_piket
+                    LEFT JOIN nama_siswa ON jadwal_piket.id_siswa = nama_siswa.id_siswa 
+                    LEFT JOIN hari ON jadwal_piket.id_hari = hari.id_hari
+                  WHERE jadwal_piket.id_hari = '$id_hari'";
+
+          return mysqli_query($conn, $sql);
+        }
+
+        // Ambil semua hari dari database
+        $hariResult = getAllHari2($conn);
+        while ($hari = mysqli_fetch_assoc($hariResult)) :
+        ?>
+          <!-- Card untuk setiap hari -->
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="uppercase tracking-wide text-sm text-indigo-500 font-bold">
+              <?= $hari['nama_hari']; ?>
+            </div>
+            <ul class="mt-4 space-y-2">
+              <?php
+              // Ambil jadwal berdasarkan hari
+              $id_hari = $hari['id_hari'];
+              $result = getJadwalByHari2($conn, $id_hari);
+
+              // Tampilkan setiap mata pelajaran
+              while ($data = mysqli_fetch_assoc($result)) :
+              ?>
+                <li class="flex justify-between items-center">
+                  <span class="text-gray-900 font-medium"><?= $data['nama']; ?></span>
+                </li>
+              <?php endwhile; ?>
+            </ul>
           </div>
-          <ul class="mt-4 space-y-2">
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Nina</span>
-              <span class="text-gray-900 font-medium">Cahya</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Alia</span>
-              <span class="text-gray-900 font-medium">Iki</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Bayu</span>
-              <span class="text-gray-900 font-medium">Billy</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Rehan</span>
-            </li>
-          </ul>
-        </div>
-        <!-- Selasa -->
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <div
-            class="uppercase tracking-wide text-sm text-indigo-500 font-bold">
-            Selasa
-          </div>
-          <ul class="mt-4 space-y-2">
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Mala</span>
-              <span class="text-gray-900 font-medium">Meilani</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Nia</span>
-              <span class="text-gray-900 font-medium">Malik</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Aryo</span>
-              <span class="text-gray-900 font-medium">Marsel</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Hilmy</span>
-            </li>
-          </ul>
-        </div>
-        <!-- Rabu -->
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <div
-            class="uppercase tracking-wide text-sm text-indigo-500 font-bold">
-            Rabu
-          </div>
-          <ul class="mt-4 space-y-2">
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Chlsea</span>
-              <span class="text-gray-900 font-medium">Avril</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Zahra</span>
-              <span class="text-gray-900 font-medium">Relly</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Raihan</span>
-              <span class="text-gray-900 font-medium">Bagas</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Ramdan</span>
-            </li>
-          </ul>
-        </div>
-        <!-- Kamis -->
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <div
-            class="uppercase tracking-wide text-sm text-indigo-500 font-bold">
-            Kamis
-          </div>
-          <ul class="mt-4 space-y-2">
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Ollvya</span>
-              <span class="text-gray-900 font-medium">Rahma</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Febby</span>
-              <span class="text-gray-900 font-medium">Raka</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Farel</span>
-              <span class="text-gray-900 font-medium">Wahyu</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Danendra</span>
-            </li>
-          </ul>
-        </div>
-        <!-- Jumat -->
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <div
-            class="uppercase tracking-wide text-sm text-indigo-500 font-bold">
-            Jumat
-          </div>
-          <ul class="mt-4 space-y-2">
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Mutiara</span>
-              <span class="text-gray-900 font-medium">Lulu</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Lela</span>
-              <span class="text-gray-900 font-medium">Deka</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Afdal</span>
-              <span class="text-gray-900 font-medium">Fitran</span>
-            </li>
-            <li class="flex justify-between items-center">
-              <span class="text-gray-900 font-medium">Nauval</span>
-            </li>
-          </ul>
-        </div>
+        <?php endwhile; ?>
       </div>
     </div>
   </div>
@@ -359,34 +283,33 @@ include 'config.php';
         </p>
 
         <div
-          class="flex flex-col mt-4 sm:flex-row sm:items-center sm:justify-center">
-          <!-- <button
-              class="flex items-center justify-center order-1 w-full px-2 py-2 mt-3 text-sm tracking-wide text-gray-600 capitalize transition-colors duration-300 transform border rounded-md sm:mx-2 dark:border-gray-400 dark:text-gray-300 sm:mt-0 sm:w-auto hover:bg-gray-50 focus:outline-none focus:ring dark:hover:bg-gray-800 focus:ring-gray-300 focus:ring-opacity-40"
-            >
-              <svg
-                class="w-5 h-5 mx-1"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C21.9939 17.5203 17.5203 21.9939 12 22ZM4 12.172C4.04732 16.5732 7.64111 20.1095 12.0425 20.086C16.444 20.0622 19.9995 16.4875 19.9995 12.086C19.9995 7.68451 16.444 4.10977 12.0425 4.086C7.64111 4.06246 4.04732 7.59876 4 12V12.172ZM10 16.5V7.5L16 12L10 16.5Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-
-              <span class="mx-1">View Demo</span>
-            </button> -->
+          class="flex flex-row mt-4 sm:items-center sm:justify-center space-x-4">
+          <a
+            href="https://www.instagram.com/tpu.nesakti"
+            class=" w-full px-2 py-2 text-sm tracking-wide text-white transition-colors duration-300 transform border rounded-md sm:mx-2 sm:order-2 sm:w-auto focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <svg class="h-8 w-8 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
 
           <a
-            href="https://www.instagram.com/airframe12__"
-            class="flex items-center justify-center order-1 w-full px-2 py-2 mt-3 text-sm tracking-wide text-gray-600 transition-colors duration-300 transform border rounded-md sm:mx-2 sm:mt-0 sm:w-auto hover:bg-gray-50 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">@airframe12_</a>
+            href="https://www.tiktok.com/@tpu.smkn1ktj"
+            class=" w-full px-2 py-2 text-sm tracking-wide text-white transition-colors duration-300 transform border rounded-md sm:mx-2 sm:order-2 sm:w-auto focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <img src="src/assets/tiktok.svg" alt="" class="h-8 w-8">
+          </a>
 
           <a
             href="https://www.instagram.com/tpu.nesakti"
-            class="w-full px-5 py-2 text-sm tracking-wide text-white transition-colors duration-300 transform bg-blue-600 rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-            @tpu.nesakti
+            class=" w-full px-2 py-2 text-sm tracking-wide text-white transition-colors duration-300 transform border rounded-md sm:mx-2 sm:order-2 sm:w-auto focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <svg class="h-8 w-8 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
           </a>
+
         </div>
       </div>
 
