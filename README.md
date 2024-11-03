@@ -15,18 +15,20 @@ Pastikan Anda sudah menginstal:
 
 1. **Clone Repository**
    Clone repository ini ke komputer Anda dan pindah ke direktori proyek:
+
    ````bash
-   git clone https://github.com/username/nama-repo.git
-   cd nama-repo```
+   git clone https://github.com/Haisyam/WebKlsTPU.git
+   cd WebKlsTPU```
    ````
-2. **Instal Dependensi**
+
+1. **Instal Dependensi**
    Instal semua dependensi yang diperlukan dengan perintah:
 
    ```bash
    npm install
    ```
 
-3. **Menjalankan Server Pengembangan**
+1. **Menjalankan Server Pengembangan**
    Setelah instalasi selesai, jalankan perintah berikut untuk memulai server pengembangan:
 
    ```bash
@@ -35,10 +37,32 @@ Pastikan Anda sudah menginstal:
 
    Perintah ini akan memulai server pengembangan, dan perubahan pada file akan langsung diterapkan serta terlihat di browser.
 
-4. **Membuat Build untuk Produksi**
+1. **Membuat Build untuk Produksi**
    Jika Anda ingin membuat build untuk produksi, jalankan:
+
    ```bash
    npm run build
+   ```
+
+1. **Setup Database**
+   Create database dengan nama:
+
+   ````bash
+   klsTpu```
+
+   Impor database.sql ke database tersebut
+   ````
+
+1. **Login Admin**
+   localhost/WebKlsTPU/admin:
+
+   Username: ``bash
+1`
+Password: ``bash
+   1`
+
+   ```
+
    ```
 
 ## Feature Admin
