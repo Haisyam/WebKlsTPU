@@ -15,7 +15,8 @@
   "main": "postcss.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tailwindcss -i ./src/style/input.css -o ./src/style/output.css --watch"
+    "dev": "npx tailwindcss -i ./src/style/input.css -o ./src/style/output.css --watch",
+    "build": "NODE_ENV=production tailwindcss -i ./src/style/input.css -o ./src/style/output.css --minify"
   },
   "keywords": [],
   "author": "",

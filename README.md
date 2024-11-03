@@ -5,6 +5,7 @@ Proyek ini menggunakan [Tailwind CSS](https://tailwindcss.com/) sebagai framewor
 ## Prasyarat
 
 Pastikan Anda sudah menginstal:
+
 - [Node.js](https://nodejs.org/) (disarankan versi LTS terbaru)
 - [npm](https://www.npmjs.com/) (biasanya sudah terinstal bersama Node.js)
 
@@ -12,11 +13,22 @@ Pastikan Anda sudah menginstal:
 
 1. **Clone Repository**
    Clone repository ini ke komputer Anda dan pindah ke direktori proyek:
-   ```bash
+   ````bash
    git clone https://github.com/username/nama-repo.git
    cd nama-repo```
-1. **Clone Repository**
-   Clone repository ini ke komputer Anda dan pindah ke direktori proyek:
+   ````
+2. **Instal Dependensi**
+   Instal semua dependensi yang diperlukan dengan perintah:
    ```bash
-   git clone https://github.com/username/nama-repo.git
-   cd nama-repo```
+   npm install
+   ```
+3. **Menjalankan Server Pengembangan**
+   Setelah instalasi selesai, jalankan perintah berikut untuk memulai server pengembangan:
+   ```bash
+   npm run dev
+   ```
+4. **Membuat Build untuk Produksi**
+   Setelah instalasi selesai, jalankan perintah berikut untuk memulai server pengembangan:
+   ```bash
+   Jika Anda ingin membuat build untuk produksi, jalankan:
+   ```
