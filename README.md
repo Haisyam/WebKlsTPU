@@ -47,20 +47,18 @@ Pastikan Anda sudah menginstal:
 1. **Setup Database**
    Create database dengan nama:
 
-   ````bash
-   klsTpu```
+   ```bash
+   klsTpu
 
-   ````
+   ```
 
    Impor database.sql ke database tersebut
 
 1. **Login Admin**
    localhost/WebKlsTPU/admin:
-
-   Username: ``1`
-
    ```
-   Password:``1`
+   Username: 1
+   Password: 1
    ```
 
 ## Feature Admin
