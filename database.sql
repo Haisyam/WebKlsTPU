@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `klstpu`
+-- Database: `k9302814_klstpu`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
   `id` int NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -71,7 +71,7 @@ CREATE TABLE `gallery_1` (
   `id` int NOT NULL,
   `image_path` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `gallery_1`
@@ -93,7 +93,7 @@ CREATE TABLE `gallery_2` (
   `id` int NOT NULL,
   `image_path` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `gallery_2`
@@ -112,7 +112,7 @@ INSERT INTO `gallery_2` (`id`, `image_path`, `created_at`) VALUES
 CREATE TABLE `hari` (
   `id_hari` int NOT NULL,
   `nama_hari` enum('Senin','Selasa','Rabu','Kamis','Jumat') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `hari`
@@ -136,7 +136,7 @@ CREATE TABLE `jadwal_pelajaran` (
   `id_hari` int NOT NULL,
   `id_jam` int NOT NULL,
   `id_mapel` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jadwal_pelajaran`
@@ -158,7 +158,7 @@ CREATE TABLE `jadwal_piket` (
   `id_piket` int NOT NULL,
   `id_hari` int NOT NULL,
   `id_siswa` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jadwal_piket`
@@ -181,7 +181,7 @@ CREATE TABLE `jam_mapel` (
   `id_jam` int NOT NULL,
   `jam_awal` time NOT NULL,
   `jam_akhir` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jam_mapel`
@@ -207,7 +207,7 @@ INSERT INTO `jam_mapel` (`id_jam`, `jam_awal`, `jam_akhir`) VALUES
 CREATE TABLE `mapel` (
   `id_mapel` int NOT NULL,
   `nama_mapel` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `mapel`
@@ -228,7 +228,7 @@ INSERT INTO `mapel` (`id_mapel`, `nama_mapel`) VALUES
 CREATE TABLE `nama_siswa` (
   `id_siswa` int NOT NULL,
   `nama` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `nama_siswa`
@@ -253,7 +253,7 @@ CREATE TABLE `pengurus` (
   `jabatan` text NOT NULL,
   `nama` text NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengurus`
