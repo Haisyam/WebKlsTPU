@@ -58,10 +58,9 @@ Pastikan Anda sudah menginstal:
    localhost/WebKlsTPU/admin:
 
    Username: ``1`
-Password:``1`
 
    ```
-
+   Password:``1`
    ```
 
 ## Feature Admin
