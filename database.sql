@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 27, 2024 at 06:05 AM
+-- Generation Time: Nov 03, 2024 at 02:48 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kelastpu`
+-- Database: `klstpu`
 --
 
 -- --------------------------------------------------------
@@ -48,9 +48,9 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 
 CREATE TABLE `banner` (
   `id` int NOT NULL,
-  `title` text COLLATE utf8mb4_general_ci NOT NULL,
-  `subtitle` text COLLATE utf8mb4_general_ci NOT NULL,
-  `image_path` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `subtitle` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `image_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -60,6 +60,48 @@ CREATE TABLE `banner` (
 
 INSERT INTO `banner` (`id`, `title`, `subtitle`, `image_path`, `created_at`) VALUES
 (2, '12 TPU', '- Teknik Pesawat Udara -', 'all.jpeg', '2024-10-25 09:17:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery_1`
+--
+
+CREATE TABLE `gallery_1` (
+  `id` int NOT NULL,
+  `image_path` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `gallery_1`
+--
+
+INSERT INTO `gallery_1` (`id`, `image_path`, `created_at`) VALUES
+(1, 'formal.jpg', '2024-10-31 06:23:29'),
+(2, 'a2.jpeg', '2024-10-31 06:24:21'),
+(3, 'a3.jpeg', '2024-10-31 06:24:34'),
+(4, 'all.jpeg', '2024-10-31 06:25:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery_2`
+--
+
+CREATE TABLE `gallery_2` (
+  `id` int NOT NULL,
+  `image_path` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `gallery_2`
+--
+
+INSERT INTO `gallery_2` (`id`, `image_path`, `created_at`) VALUES
+(1, 'all.jpeg', '2024-10-31 06:38:55'),
+(2, 'formal.jpg', '2024-10-31 06:39:15');
 
 -- --------------------------------------------------------
 
@@ -101,7 +143,33 @@ CREATE TABLE `jadwal_pelajaran` (
 --
 
 INSERT INTO `jadwal_pelajaran` (`id_japel`, `id_hari`, `id_jam`, `id_mapel`) VALUES
-(11, 1, 19, 4);
+(11, 1, 19, 2),
+(14, 2, 22, 1),
+(16, 3, 24, 4),
+(17, 4, 25, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jadwal_piket`
+--
+
+CREATE TABLE `jadwal_piket` (
+  `id_piket` int NOT NULL,
+  `id_hari` int NOT NULL,
+  `id_siswa` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `jadwal_piket`
+--
+
+INSERT INTO `jadwal_piket` (`id_piket`, `id_hari`, `id_siswa`) VALUES
+(1, 1, 5),
+(2, 2, 2),
+(3, 3, 3),
+(5, 4, 5),
+(7, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -123,7 +191,12 @@ INSERT INTO `jam_mapel` (`id_jam`, `jam_awal`, `jam_akhir`) VALUES
 (18, '00:00:00', '01:00:00'),
 (19, '01:00:00', '02:00:00'),
 (20, '00:00:00', '01:00:00'),
-(21, '02:00:00', '03:00:00');
+(21, '02:00:00', '03:00:00'),
+(22, '11:10:00', '12:00:00'),
+(23, '12:12:00', '12:45:00'),
+(24, '07:00:00', '08:00:00'),
+(25, '11:24:00', '12:24:00'),
+(26, '11:41:00', '17:51:00');
 
 -- --------------------------------------------------------
 
@@ -149,6 +222,28 @@ INSERT INTO `mapel` (`id_mapel`, `nama_mapel`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `nama_siswa`
+--
+
+CREATE TABLE `nama_siswa` (
+  `id_siswa` int NOT NULL,
+  `nama` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `nama_siswa`
+--
+
+INSERT INTO `nama_siswa` (`id_siswa`, `nama`) VALUES
+(1, 'Udin'),
+(2, 'Asep'),
+(3, 'Ilham'),
+(4, 'Bagas'),
+(5, 'Aldi');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pengurus`
 --
 
@@ -165,9 +260,10 @@ CREATE TABLE `pengurus` (
 --
 
 INSERT INTO `pengurus` (`id`, `warna`, `jabatan`, `nama`, `created_at`) VALUES
-(1, 'blue', 'Wali Kelas', 'Agus', '2024-10-25 10:06:01'),
-(2, 'red', 'Ketua', 'Usa', '2024-10-25 10:08:39'),
-(3, 'gray', 'Mko', 'adas', '2024-10-25 10:11:24');
+(1, 'blue', 'Wali Kelas', 'Agus Saprudin', '2024-10-25 10:06:01'),
+(2, 'red', 'Ketua', 'Ga tau', '2024-10-25 10:08:39'),
+(3, 'blue', 'Wakil Ketua', 'Bukan saya', '2024-10-25 10:11:24'),
+(5, 'gray', 'Apalahj', 'Jjang nugraha', '2024-11-02 23:45:44');
 
 --
 -- Indexes for dumped tables
@@ -186,6 +282,18 @@ ALTER TABLE `banner`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `gallery_1`
+--
+ALTER TABLE `gallery_1`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `gallery_2`
+--
+ALTER TABLE `gallery_2`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `hari`
 --
 ALTER TABLE `hari`
@@ -201,6 +309,14 @@ ALTER TABLE `jadwal_pelajaran`
   ADD KEY `nama_mapel` (`id_mapel`);
 
 --
+-- Indexes for table `jadwal_piket`
+--
+ALTER TABLE `jadwal_piket`
+  ADD PRIMARY KEY (`id_piket`),
+  ADD KEY `id_hari` (`id_hari`,`id_siswa`),
+  ADD KEY `id_siswa` (`id_siswa`);
+
+--
 -- Indexes for table `jam_mapel`
 --
 ALTER TABLE `jam_mapel`
@@ -211,6 +327,12 @@ ALTER TABLE `jam_mapel`
 --
 ALTER TABLE `mapel`
   ADD PRIMARY KEY (`id_mapel`);
+
+--
+-- Indexes for table `nama_siswa`
+--
+ALTER TABLE `nama_siswa`
+  ADD PRIMARY KEY (`id_siswa`);
 
 --
 -- Indexes for table `pengurus`
@@ -235,6 +357,18 @@ ALTER TABLE `banner`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `gallery_1`
+--
+ALTER TABLE `gallery_1`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `gallery_2`
+--
+ALTER TABLE `gallery_2`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `hari`
 --
 ALTER TABLE `hari`
@@ -244,13 +378,19 @@ ALTER TABLE `hari`
 -- AUTO_INCREMENT for table `jadwal_pelajaran`
 --
 ALTER TABLE `jadwal_pelajaran`
-  MODIFY `id_japel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_japel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `jadwal_piket`
+--
+ALTER TABLE `jadwal_piket`
+  MODIFY `id_piket` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `jam_mapel`
 --
 ALTER TABLE `jam_mapel`
-  MODIFY `id_jam` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_jam` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `mapel`
@@ -259,10 +399,16 @@ ALTER TABLE `mapel`
   MODIFY `id_mapel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `nama_siswa`
+--
+ALTER TABLE `nama_siswa`
+  MODIFY `id_siswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `pengurus`
 --
 ALTER TABLE `pengurus`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -275,6 +421,13 @@ ALTER TABLE `jadwal_pelajaran`
   ADD CONSTRAINT `jadwal_pelajaran_ibfk_1` FOREIGN KEY (`id_hari`) REFERENCES `hari` (`id_hari`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `jadwal_pelajaran_ibfk_2` FOREIGN KEY (`id_jam`) REFERENCES `jam_mapel` (`id_jam`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `jadwal_pelajaran_ibfk_3` FOREIGN KEY (`id_mapel`) REFERENCES `mapel` (`id_mapel`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `jadwal_piket`
+--
+ALTER TABLE `jadwal_piket`
+  ADD CONSTRAINT `jadwal_piket_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `nama_siswa` (`id_siswa`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `jadwal_piket_ibfk_2` FOREIGN KEY (`id_hari`) REFERENCES `hari` (`id_hari`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
