@@ -50,16 +50,15 @@ Pastikan Anda sudah menginstal:
    ````bash
    klsTpu```
 
-   Impor database.sql ke database tersebut
    ````
+
+   Impor database.sql ke database tersebut
 
 1. **Login Admin**
    localhost/WebKlsTPU/admin:
 
-   Username: ``bash
-1`
-Password: ``bash
-   1`
+   Username: ``1`
+Password:``1`
 
    ```
 
